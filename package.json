@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "name": "livdecor",
-=======
-  "name": "prem-associates",
->>>>>>> 58e60c7a105a5ff6112da9a9ac35ca2279a87519
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -14,17 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "framer-motion": "^12.40.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-icons": "^5.6.0",
     "react-router-dom": "^7.18.0",
     "swiper": "^12.2.0"
-=======
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
->>>>>>> 58e60c7a105a5ff6112da9a9ac35ca2279a87519
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
