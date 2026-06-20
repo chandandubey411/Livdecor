@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @tailwind base;
@@ -98,3 +99,8 @@
 /* project swiper */
 .proj-swiper .swiper-pagination-bullet        { background:rgba(42,42,42,.25)!important; opacity:1!important; }
 .proj-swiper .swiper-pagination-bullet-active { background:#D89A5B!important; width:22px!important; border-radius:4px!important; }
+=======
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+>>>>>>> 58e60c7a105a5ff6112da9a9ac35ca2279a87519
