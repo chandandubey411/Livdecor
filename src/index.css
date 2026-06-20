@@ -157,6 +157,22 @@
     box-shadow: 0 0 0 3px rgba(216,154,91,0.15);
   }
 
+  .form-input-premium {
+    @apply w-full rounded-2xl pl-11 pr-4 py-3.5 text-sm transition-all duration-300;
+    border: 1.5px solid #E8E0D8;
+    color: #2A2A2A;
+    background-color: #FDFDFD;
+  }
+  .form-input-premium::placeholder {
+    color: rgba(140, 122, 107, 0.5);
+  }
+  .form-input-premium:focus {
+    outline: none;
+    border-color: #D89A5B;
+    background-color: #fff;
+    box-shadow: 0 10px 30px rgba(216, 154, 91, 0.06), 0 0 0 4px rgba(216, 154, 91, 0.1);
+  }
+
   .form-label {
     @apply block text-xs font-semibold uppercase tracking-wider mb-1.5;
     color: rgba(42,42,42,0.7);
