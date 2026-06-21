@@ -202,6 +202,12 @@
   .proj-swiper .swiper-pagination-bullet-active {
     background: #D89A5B;
   }
+
+  /* ── Swiper Hero navigation & pagination ─────────────────────────── */
+  .hero-swiper {
+    --swiper-navigation-color: #ffffff;
+    --swiper-pagination-color: #ffffff;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
