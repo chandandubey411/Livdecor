@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import MiniHero    from '../components/MiniHero/MiniHero';
 import ServiceCard from '../components/ServiceCard/ServiceCard';
+import DetailModal from '../components/DetailModal/DetailModal';
 import { services } from '../data/services';
 import { HiArrowRight } from 'react-icons/hi';
 
 export default function Services() {
+  const [activeModalData, setActiveModalData] = useState(null);
   return (
     <>
       <MiniHero
@@ -26,7 +29,14 @@ export default function Services() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-            {services.map((s, i) => <ServiceCard key={s.id} service={s} index={i}/>)}
+            {services.map((s, i) => (
+              <ServiceCard
+                key={s.id}
+                service={s}
+                index={i}
+                onClick={() => setActiveModalData({ ...s, type: 'service' })}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -90,6 +100,8 @@ export default function Services() {
           </motion.div>
         </div>
       </section>
+      {/* Detail Modal */}
+      <DetailModal data={activeModalData} onClose={() => setActiveModalData(null)} />
     </>
   );
 }

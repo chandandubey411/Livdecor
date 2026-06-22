@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,15 +11,17 @@ import ServiceCard      from '../components/ServiceCard/ServiceCard';
 import ProjectCard      from '../components/ProjectCard/ProjectCard';
 import TestimonialCard  from '../components/TestimonialCard/TestimonialCard';
 import CountUp          from '../components/CountUp/CountUp';
+import DetailModal      from '../components/DetailModal/DetailModal';
 import { services }     from '../data/services';
 import { testimonials } from '../data/testimonials';
+import { stats }        from '../data/stats';
 import { HiArrowRight, HiCheckCircle } from 'react-icons/hi';
-import { FaAward, FaUsers, FaProjectDiagram, FaSmile } from 'react-icons/fa';
 
 // ── Featured collections ───────────────────────────────────────────
 const collections = [
   { title:'Living Room',      image:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=700&q=85' },
   { title:'Bedroom',          image:'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=700&q=85' },
+  { title:'Wardrobes',        image:'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=700&q=85' },
   { title:'Home Office',      image:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=85' },
   { title:'Luxury Wallpaper', image:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=700&q=85' },
   { title:'Modern PVC Panel', image:'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=700&q=85' },
@@ -27,11 +29,71 @@ const collections = [
 
 // ── Projects ───────────────────────────────────────────────────────
 const projects = [
-  { id:1, title:'Luxury Villa Living Room',    category:'Living Room',   image:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85' },
-  { id:2, title:'Master Bedroom Suite',        category:'Bedroom',       image:'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=85' },
-  { id:3, title:'Modern PVC Panel Office',     category:'PVC Panel',     image:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=700&q=85' },
-  { id:4, title:'Floral Wallpaper Bedroom',    category:'Wallpaper',     image:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=85' },
-  { id:5, title:'Modular Kitchen Interior',    category:'Modular',       image:'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=700&q=85' },
+  {
+    id:1,
+    title:'Luxury Villa Living Room',
+    category:'Living Room',
+    image:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85',
+    description:'A complete luxury villa living room makeover with clean, modern styling. Features customized wood-fluted panels, POP false ceiling, designer profile lighting, and a neutral, warm color palette that exudes elegance.',
+    specs: {
+      'Client': 'Sharma Family',
+      'Location': 'Sector 85, Faridabad',
+      'Duration': '4 Weeks',
+      'Materials': 'High-Density MDF, LED Profiles, Acrylic Paints'
+    }
+  },
+  {
+    id:2,
+    title:'Master Bedroom Suite',
+    category:'Bedroom',
+    image:'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=700&q=85',
+    description:'Designed to be a cozy personal sanctuary, this master bedroom features a customized upholstered bedhead panel, modern wardrobes with gold inlay handles, and layered ambient lighting.',
+    specs: {
+      'Client': 'Verma Family',
+      'Location': 'Sector 15, Faridabad',
+      'Duration': '3.5 Weeks',
+      'Materials': 'Suede Fabric, Laminated Plywood, Hettich Fittings'
+    }
+  },
+  {
+    id:3,
+    title:'Modern PVC Panel Office',
+    category:'PVC Panel',
+    image:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=700&q=85',
+    description:'A sleek, highly productive office space using durable water-resistant PVC wall panels to build a stunning accent wall. Outfitted with customized modular work desks.',
+    specs: {
+      'Client': 'Nexus Tech Co.',
+      'Location': 'Neelam Flyover, Faridabad',
+      'Duration': '2 Weeks',
+      'Materials': 'Fluted PVC Panels, Powder-Coated Metal'
+    }
+  },
+  {
+    id:4,
+    title:'Floral Wallpaper Bedroom',
+    category:'Wallpaper',
+    image:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=85',
+    description:'A warm and inviting guest bedroom featuring a premium floral wallpaper accent wall. Complemented by vintage-style nightstands and warm yellow bedside lights.',
+    specs: {
+      'Client': 'Ms. Ritu Sen',
+      'Location': 'Green Field, NCR',
+      'Duration': '3 Days',
+      'Materials': 'Non-woven Wallpaper, Eco-friendly Adhesive'
+    }
+  },
+  {
+    id:5,
+    title:'Modular Kitchen Interior',
+    category:'Modular',
+    image:'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=700&q=85',
+    description:'An ultra-functional, handleless modular kitchen featuring marine-grade boiling-waterproof plywood cabinet boxes, high-gloss acrylic shutter fronts, and a custom quartz countertop.',
+    specs: {
+      'Client': 'Mr. & Mrs. Kapoor',
+      'Location': 'Charmwood Village, Faridabad',
+      'Duration': '5 Weeks',
+      'Materials': 'BWP Plywood, Quartz Stone, Blum Soft-close Hardware'
+    }
+  },
 ];
 
 // ── USPs ──────────────────────────────────────────────────────────
@@ -43,13 +105,7 @@ const usps = [
   'Free design consultation for all clients',
 ];
 
-// ── Stats counter ─────────────────────────────────────────────────
-const stats = [
-  { icon: FaProjectDiagram, value:'500+', label:'Projects Done'     },
-  { icon: FaSmile,          value:'350+', label:'Happy Clients'     },
-  { icon: FaAward,          value:'8+',   label:'Years Experience'  },
-  { icon: FaUsers,          value:'20+',  label:'Expert Designers'  },
-];
+// Stats are imported dynamically from '../data/stats'
 
 function StatBox({ stat, index }) {
   const ref    = useRef(null);
@@ -71,6 +127,8 @@ function StatBox({ stat, index }) {
 }
 
 export default function Home() {
+  const [activeModalData, setActiveModalData] = useState(null);
+
   return (
     <>
       {/* 1. Hero Slider */}
@@ -88,7 +146,14 @@ export default function Home() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-            {services.map((s, i) => <ServiceCard key={s.id} service={s} index={i}/>)}
+            {services.map((s, i) => (
+              <ServiceCard
+                key={s.id}
+                service={s}
+                index={i}
+                onClick={() => setActiveModalData({ ...s, type: 'service' })}
+              />
+            ))}
           </div>
           <div className="text-center mt-12">
             <Link to="/services" className="btn-outline-primary">
@@ -109,7 +174,7 @@ export default function Home() {
               Handpicked interior styles to inspire your next transformation.
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
             {collections.map((col, i) => (
               <motion.div key={col.title}
                 initial={{ opacity:0, y:30 }} whileInView={{ opacity:1, y:0 }}
@@ -227,7 +292,11 @@ export default function Home() {
           >
             {projects.map((p, i) => (
               <SwiperSlide key={p.id}>
-                <ProjectCard project={p} index={i}/>
+                <ProjectCard
+                  project={p}
+                  index={i}
+                  onClick={() => setActiveModalData({ ...p, type: 'project' })}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -286,6 +355,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      {/* Detail Modal */}
+      <DetailModal data={activeModalData} onClose={() => setActiveModalData(null)} />
     </>
   );
 }

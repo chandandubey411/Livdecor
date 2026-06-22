@@ -4,14 +4,10 @@ import { Link } from 'react-router-dom';
 import MiniHero from '../components/MiniHero/MiniHero';
 import CountUp from '../components/CountUp/CountUp';
 import { HiCheckCircle, HiArrowRight } from 'react-icons/hi';
-import { FaAward, FaUsers, FaProjectDiagram, FaSmile, FaQuoteLeft } from 'react-icons/fa';
+import { FaQuoteLeft } from 'react-icons/fa';
+import { stats } from '../data/stats';
 
-const stats = [
-  { icon: FaProjectDiagram, value:'500+', label:'Projects Done'    },
-  { icon: FaSmile,          value:'350+', label:'Happy Clients'    },
-  { icon: FaAward,          value:'8+',   label:'Years Experience' },
-  { icon: FaUsers,          value:'20+',  label:'Expert Designers' },
-];
+// Stats are imported dynamically from '../data/stats'
 
 const team = [
   { name:'Rajesh Kumar',  role:'Lead Interior Designer', img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=85' },

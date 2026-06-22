@@ -2,14 +2,15 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HiArrowRight } from 'react-icons/hi';
 
-export default function ServiceCard({ service, index }) {
+export default function ServiceCard({ service, index, onClick }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.55, delay: index * 0.1 }}
-      className="card-base group"
+      className="card group cursor-pointer"
+      onClick={onClick}
     >
       {/* Image */}
       <div className="relative h-52 overflow-hidden">
@@ -35,7 +36,7 @@ export default function ServiceCard({ service, index }) {
 
         {/* Features */}
         <ul className="space-y-1.5 mb-5">
-          {service.features.map(f => (
+          {service.features.slice(0, 3).map(f => (
             <li key={f} className="flex items-center gap-2 text-sm text-dark/70">
               <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0"/>
               {f}
@@ -43,11 +44,17 @@ export default function ServiceCard({ service, index }) {
           ))}
         </ul>
 
-        <Link to="/contact"
-          className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold
-                     group-hover:gap-2.5 transition-all duration-300">
-          Get Quote <HiArrowRight/>
-        </Link>
+        <div className="flex items-center justify-between border-t border-light-gray/40 pt-4 mt-4">
+          <Link to="/contact"
+            onClick={(e) => e.stopPropagation()}
+            className="inline-flex items-center gap-1.5 text-primary text-sm font-semibold
+                       group-hover:gap-2.5 transition-all duration-300">
+            Get Quote <HiArrowRight/>
+          </Link>
+          <span className="text-xs font-semibold text-warm-gray group-hover:text-primary transition-colors duration-300">
+            Learn More →
+          </span>
+        </div>
       </div>
     </motion.div>
   );

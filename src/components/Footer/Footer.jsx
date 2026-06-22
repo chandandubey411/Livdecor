@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { FaMapMarkerAlt, FaPhone, FaClock, FaInstagram, FaFacebookF, FaWhatsapp, FaYoutube } from 'react-icons/fa';
 import { HiArrowRight } from 'react-icons/hi';
 import logoImg from '../../assets/logo.png';
+import { services } from '../../data/services';
 
 const quickLinks  = [
   { name:'Home',       path:'/'         },
@@ -10,7 +11,6 @@ const quickLinks  = [
   { name:'Gallery',    path:'/gallery'  },
   { name:'Contact',    path:'/contact'  },
 ];
-const serviceList = ['Wallpaper Design','PVC Wall Panels','False Ceiling','Living Room Design','Bedroom Interior','Modular Interiors'];
 const socials     = [
   { Icon: FaInstagram, href:'#',                              label:'Instagram', hover:'hover:bg-pink-600'  },
   { Icon: FaFacebookF, href:'#',                              label:'Facebook',  hover:'hover:bg-blue-600'  },
@@ -67,12 +67,12 @@ export default function Footer() {
           <div>
             <h4 className="font-serif font-semibold text-white mb-5">Our Services</h4>
             <ul className="space-y-3">
-              {serviceList.map(s => (
-                <li key={s}>
+              {services.map(s => (
+                <li key={s.id}>
                   <Link to="/services"
                     className="text-white/55 hover:text-primary text-sm transition-colors duration-200 flex items-center gap-2 group">
                     <HiArrowRight className="text-primary/40 group-hover:text-primary text-xs transition-colors"/>
-                    {s}
+                    {s.title}
                   </Link>
                 </li>
               ))}

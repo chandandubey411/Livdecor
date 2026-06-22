@@ -12,6 +12,9 @@ export const galleryItems = [
   { id:10, category:'wallpaper',   title:'Textured Wallpaper',        image:'https://images.unsplash.com/photo-1534349762230-e0cadf78f5da?w=700&q=85' },
   { id:11, category:'bedroom',     title:'Cozy Bedroom Interior',     image:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=700&q=85' },
   { id:12, category:'pvc-panel',   title:'Office PVC Accent Wall',    image:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=85' },
+  { id:13, category:'wardrobe',    title:'Elegant Sliding Wardrobe',  image:'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=800&q=85' },
+  { id:14, category:'wardrobe',    title:'Luxury Walk-in Closet',     image:'https://images.unsplash.com/photo-1558997519-83ea9282ef0e?w=800&q=85' },
+  { id:15, category:'wardrobe',    title:'Contemporary Almirah',      image:'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800&q=85' },
 ];
 
 export const galleryCategories = [
@@ -20,4 +23,5 @@ export const galleryCategories = [
   { id:'pvc-panel',   label:'PVC Panel'  },
   { id:'living-room', label:'Living Room'},
   { id:'bedroom',     label:'Bedroom'    },
+  { id:'wardrobe',    label:'Wardrobes'  },
 ];

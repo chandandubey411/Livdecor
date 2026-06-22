@@ -54,4 +54,13 @@ export const services = [
     features: ['Modular Kitchen', 'Wardrobes', 'Office Cabinets'],
     image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=700&q=85',
   },
+  {
+    id: 7,
+    icon: '🚪',
+    title: 'Custom Wardrobes',
+    description:
+      'Beautifully crafted wardrobe and closet systems designed to maximize storage space. From sleek sliding doors to premium walk-in closets, we build storage that complements your bedroom.',
+    features: ['Sliding & Swing Doors', 'Smart Accessories Integration', 'Premium Dampened Hardware'],
+    image: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=700&q=85',
+  },
 ];

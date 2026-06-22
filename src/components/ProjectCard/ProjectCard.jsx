@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { HiArrowRight } from 'react-icons/hi';
 
-export default function ProjectCard({ project, index }) {
+export default function ProjectCard({ project, index, onClick }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -9,6 +9,7 @@ export default function ProjectCard({ project, index }) {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="relative group rounded-2xl overflow-hidden cursor-pointer"
+      onClick={onClick}
     >
       <div className="aspect-[4/5] overflow-hidden">
         <img src={project.image} alt={project.title}
